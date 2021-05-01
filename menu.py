@@ -40,8 +40,17 @@ def main(scr):
             scr.addstr(0,0,f"You selected {menu[c_row_i]}")
             scr.refresh()
             if c_row_i == len(menu)-1:
-                break
-            scr.getch()
+                confirm = "Are you sure?(Y/n)"
+                h, w = scr.getmaxyx()
+                x = w // 2 - len(confirm) // 2
+                y = h // 2
+                scr.clear()
+                scr.addstr(y,x,confirm)
+                key2 = scr.getch()
+                if key2 in [curses.KEY_ENTER,10,13,ord('y')]:
+                    break
+            else:
+                scr.getch()
         print_menu(scr,c_row_i)
         scr.refresh()
 
